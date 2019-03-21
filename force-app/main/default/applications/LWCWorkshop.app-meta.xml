@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#ED0909</headerColor>
+        <logo>lightningiconvector10841378</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>Everything LWC</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>LWC-Workshop</label>
+    <navType>Standard</navType>
+    <tabs>standard-Feed</tabs>
+    <tabs>standard-home</tabs>
+    <tabs>Hello</tabs>
+    <tabs>LWC_Account</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>LWC_Workshop_UtilityBar</utilityBar>
+</CustomApplication>

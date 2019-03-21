@@ -1,0 +1,53 @@
+<template>
+    <lightning-card title="Account List" icon-name="custom:custom64">    
+            <div class="slds-m-around_medium">
+
+                    <template if:true={accounts.data}>
+                        <!-- Search functionality -->
+                        <lightning-input 
+                            type="search" 
+                            onchange={handleKeyChange} 
+                            class="slds-m-bottom_small" 
+                            label="Search" value={searchKey}>
+                        </lightning-input>
+                        <div class="slds-p-around_medium lgc-bg" style="height: 300px;">
+                                <lightning-datatable
+                                    key-field="id"
+                                    data={accounts.data}
+                                    columns={columns}
+                                    onrowaction={handleRowAction}
+                                >
+                                </lightning-datatable>                
+                        </div>
+
+                    </template>
+
+                    <div class="slds-p-around_medium slds-m-top_large" style="width: 30rem;">
+                        <article class="slds-tile">
+                                <h3 class="slds-text-heading_small slds-tile__title slds-truncate" title="Record details">Record details</h3>
+                                <div class="slds-tile__detail">
+                                    <dl class="slds-list_horizontal slds-wrap">
+                                        <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Name">Name:</dt>
+                                        <dd class="slds-item_detail slds-truncate">{record.Name}</dd>
+                                        <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Phone">Phone:</dt>
+                                        <dd class="slds-item_detail slds-truncate">
+                                            <lightning-formatted-phone value={record.Phone} ></lightning-formatted-phone>
+                                        </dd>
+                                        <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Website">Website:</dt>
+                                        <dd class="slds-item_detail slds-truncate">
+                                            <lightning-formatted-url value={record.Website} ></lightning-formatted-url>
+                                        </dd>
+
+                                    </dl>
+                                </div>
+                        </article>
+                    </div>                    
+
+                    <template if:true={accounts.error}>
+                            alert('Exception - Error retrieving account records.')
+                    </template>
+            </div>
+
+    </lightning-card>
+    
+</template>

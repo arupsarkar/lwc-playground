@@ -1,6 +1,8 @@
 import { LightningElement, track, wire} from 'lwc';
 import getAccountList from '@salesforce/apex/AccountController.getAccountList';
 import findAccounts from '@salesforce/apex/AccountController.findAccounts';
+import { CurrentPageReference} from 'lightning/navigation'
+import { fireEvent } from 'c/pubsub';
 
 /** The delay used when debouncing event handlers before invoking Apex. */
 const DELAY = 300;
@@ -8,6 +10,7 @@ const DELAY = 300;
 const actions = [
     { label: 'Show details', name: 'show_details' },
     { label: 'Delete', name: 'delete' },
+    { label: 'Show on Map', name: 'show_on_map' },
 ];
 
 const columns = [
@@ -30,6 +33,8 @@ export default class AccountList extends LightningElement {
     @track tableLoadingState = true;    
     @wire(findAccounts, { searchKey: '$searchKey' })
     accounts;
+
+    @wire(CurrentPageReference) pageRef;
     
     handleLoad() {
         getAccountList()
@@ -54,6 +59,9 @@ export default class AccountList extends LightningElement {
                 break;
             case 'show_details':
                 this.showRowDetails(row);
+                break;
+            case 'show_on_map':
+                this.selectedAccount(row);
                 break;
             default:
         }
@@ -88,7 +96,20 @@ export default class AccountList extends LightningElement {
         // eslint-disable-next-line no-console
         console.log('Showing record details.');
         this.record = row;
-    }    
+    }
+    
+    selectedAccount(event) {
+        // eslint-disable-next-line no-console
+
+        const selectedRows = event.detail.selectedRows;
+        for (let i = 0; i < selectedRows.length; i++){
+            // eslint-disable-next-line no-console
+            console.log('AccountList.selectedAccount', selectedRows[i]);
+            fireEvent(this.pageRef, 'showAccountOnMap', selectedRows[i]);            
+        }
+
+
+    }
 
     handleKeyChange(event) {
         // Debouncing this method: Do not update the reactive property as long as this function is

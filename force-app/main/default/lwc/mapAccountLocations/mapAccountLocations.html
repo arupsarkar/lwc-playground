@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title='Pub Sub Account' icon-name='custom:custom30'>
+            <div class="slds-m-around_medium">
+                        {data}
+            </div>
+
+            <lightning-map
+            map-markers={mapMarkers}
+            zoom-level = {zoomLevel}
+            markers-title = {markersTitle}
+            show-footer = {showFooter}
+            >
+            </lightning-map>
+    </lightning-card>
+    
+</template>

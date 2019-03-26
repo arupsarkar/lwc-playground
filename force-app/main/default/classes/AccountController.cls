@@ -13,7 +13,8 @@ public with sharing class AccountController {
     @AuraEnabled(cacheable=true)
     public static List<Account> findAccounts(String searchKey) {
         String key = '%' + searchKey + '%';
-        return [SELECT Id, Name, Phone, Website 
+        return [SELECT Id, Name, Phone, Website,
+                    BillingStreet, BillingState, BillingCity, BillingPostalCode, BillingCountry
                     FROM Account
                     WHERE Name LIKE :key 
                     LIMIT 10];

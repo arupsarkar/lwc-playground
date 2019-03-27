@@ -7,11 +7,13 @@ import { fireEvent } from 'c/pubsub';
 /** The delay used when debouncing event handlers before invoking Apex. */
 const DELAY = 300;
 
+// TODO: Create one more drop down to show in the drop down menu
 const actions = [
     { label: 'Show details', name: 'show_details' },
     { label: 'Delete', name: 'delete' }
 ];
 
+// TODO: Create a new column in the data table.
 const columns = [
     { label: 'Name', fieldName: 'Name', type: 'text', sortable: true},
     { label: 'Website', fieldName: 'Website', type: 'url' },
@@ -58,9 +60,6 @@ export default class AccountList extends LightningElement {
                 break;
             case 'show_details':
                 this.showRowDetails(row);
-                break;
-            case 'show_on_map':
-                this.selectedAccount(row);
                 break;
             default:
         }

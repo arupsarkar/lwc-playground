@@ -52,17 +52,8 @@ export default class MapAccountLocations extends LightningElement {
         this.PostalCode = data.BillingPostalCode;
         this.Country = data.BillingCountry;
 
-        this.mapMarkers = [{
-                location: {
-                    Street: data.BillingStreet,
-                    City: data.BillingCity,
-                    State: data.BillingState
-                },
-                title: data.Name,
-                icon: 'standard:account'
-        }]
-        // this.mapMarkers.push(this.mapMarker);
-
+        //TODO: Create the map marker data here.
+        
         // eslint-disable-next-line no-console
         console.log('MapAccountLocations.handleAccountSelected mapMarkers', this.mapMarkers);
         // eslint-disable-next-line no-console        

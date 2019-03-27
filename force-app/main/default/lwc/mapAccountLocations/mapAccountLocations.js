@@ -9,10 +9,16 @@ export default class MapAccountLocations extends LightningElement {
     @wire(findAccounts, { searchKey: '$searchKey' })
     accounts;
     @track data = [];
+    @track Street;
+    @track City;
+    @track State;
+    @track PostalCode;
+    @track Country;
+
     zoomLevel = 5;
     markersTitle = 'Account locations in United States';
     showFooter = true;
-    
+    mapMarker = {};
     // Default map marker
     mapMarkers = [
         {
@@ -21,10 +27,8 @@ export default class MapAccountLocations extends LightningElement {
                 City: 'Washington',
                 State: 'DC',
             },
-
             title: 'The White House',
-            description:
-                'Landmark, historic home & office of the United States president, with tours for visitors.',
+            icon: 'standard:account'
         },
     ];    
 
@@ -42,19 +46,26 @@ export default class MapAccountLocations extends LightningElement {
         // eslint-disable-next-line no-console
         console.log('MapAccountLocations.handleAccountSelected before()', data);
         this.data = data.Name;
-        this.mapMarkers = [
-            {
+        this.Street = data.BillingStreet;
+        this.City = data.BillingCity;        
+        this.State = data.BillingState;
+        this.PostalCode = data.BillingPostalCode;
+        this.Country = data.BillingCountry;
+
+        this.mapMarkers = [{
                 location: {
                     Street: data.BillingStreet,
                     City: data.BillingCity,
                     State: data.BillingState
                 },
-    
                 title: data.Name,
                 icon: 'standard:account'
-            },
-        ];
+        }]
+        // this.mapMarkers.push(this.mapMarker);
+
         // eslint-disable-next-line no-console
+        console.log('MapAccountLocations.handleAccountSelected mapMarkers', this.mapMarkers);
+        // eslint-disable-next-line no-console        
         console.log('MapAccountLocations.handleAccountSelected after()', this.data);
     }
     

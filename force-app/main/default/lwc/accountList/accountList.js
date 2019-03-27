@@ -9,8 +9,7 @@ const DELAY = 300;
 
 const actions = [
     { label: 'Show details', name: 'show_details' },
-    { label: 'Delete', name: 'delete' },
-    { label: 'Show on Map', name: 'show_on_map' },
+    { label: 'Delete', name: 'delete' }
 ];
 
 const columns = [
